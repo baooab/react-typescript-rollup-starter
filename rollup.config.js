@@ -2,6 +2,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import html, { makeHtmlAttributes } from "@rollup/plugin-html";
+import postcss from "rollup-plugin-postcss";
 import serve from "rollup-plugin-serve";
 import replace from "@rollup/plugin-replace";
 import livereload from "rollup-plugin-livereload";
@@ -24,6 +25,9 @@ export default {
     }),
     resolve(),
     commonjs(),
+    postcss({
+      extensions: [".css", ".scss"],
+    }),
     typescript(),
     html({
       template({ attributes, files, meta, publicPath, title }) {
